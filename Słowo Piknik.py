@@ -22,7 +22,7 @@ def losuj(litery2,ileliter):
 czyszukac=input("Jeśli chcesz szukać wyrazu wpisz 't'")
 litery=listaliter()
 
-while czyszukac == "t".lower():
+while czyszukac.lower() == "t":
     listaslow = []
     ileliter=int(input("Ilu literowego słowa szukasz?"+"\n"))
     litery2=copy.copy(litery)
@@ -35,13 +35,15 @@ while czyszukac == "t".lower():
             listaslow.append(wyraz)
         else:
             licznik+=1
-        if licznik==500:
+        if len(litery)<=10 and licznik==1000 or len(litery)<=16 and licznik==10000 or len(litery)>16 and licznik==100000:
             flaga=False
+
     with open("slowa.txt","r",encoding="utf-8") as plik:
-        for i in plik:
-            linia=plik.readline().strip()
+        linia=plik.readline().strip()
+        while linia !="":
             if linia in listaslow:
                 print(linia)
+            linia = plik.readline().strip()
 
     czyszukac = input("Jeśli chcesz szukać wyrazu kliknij 't'")
 
